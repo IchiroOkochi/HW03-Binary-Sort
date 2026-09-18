@@ -158,19 +158,24 @@ int write_vectors_to_file(char * filename, struct vector * vector_list, int vect
         if (fwrite(&vector_list[i].x, sizeof(int), 1, file) != 1)
         {
             fclose(file);
+            free(vector_list);
             return EXIT_FAILURE;
         }
         if (fwrite(&vector_list[i].y, sizeof(int), 1, file) != 1)
         {
             fclose(file);
+            free(vector_list);
             return EXIT_FAILURE;
         }
         if (fwrite(&vector_list[i].z, sizeof(int), 1, file) != 1)
         {
             fclose(file);
+            free(vector_list);
             return EXIT_FAILURE;
         }
     }
+
     fclose(file);
+    free(vector_list);
     return EXIT_SUCCESS;
 }
